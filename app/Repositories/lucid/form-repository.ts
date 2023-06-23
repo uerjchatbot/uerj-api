@@ -1,10 +1,22 @@
 import Env from "@ioc:Adonis/Core/Env";
-import { Create, Form, List, Update } from "App/Dtos/Form";
+import { Create, Form, Update } from "App/Dtos/Form";
+import { List } from "App/Dtos/List";
 import { Query } from "App/Dtos/Query";
 import Model from "App/Models/Form";
 import { FormRepository } from "../form-repository";
 
 export class LucidFormRepository implements FormRepository {
+  public async findMany<T extends keyof Form>(
+    key: T,
+    value: Exclude<Form[T], null>
+  ): Promise<Form[]> {
+    const fetchForms = await Model.query()
+      .where(key, value)
+      .orderBy("title", "asc");
+    const forms = fetchForms.map((form) => form.toJSON());
+    return forms as Form[];
+  }
+
   public async create(data: Create): Promise<Form> {
     const createdForm = await Model.create(data);
     const form = createdForm?.toJSON();
@@ -32,7 +44,7 @@ export class LucidFormRepository implements FormRepository {
     return form ?? null;
   }
 
-  public async list(query: Query): Promise<List> {
+  public async list(query: Query): Promise<List<Form>> {
     const fetchForms = await Model.query()
       .whereNot("form_id", Env.get("FORM_DEFAULT_ID"))
       .if(query.search, (build) =>
@@ -40,7 +52,7 @@ export class LucidFormRepository implements FormRepository {
       )
       .orderBy("title", query.order)
       .paginate(Number(query.page), Number(query.limit));
-    const users = fetchForms?.toJSON();
-    return users as List;
+    const forms = fetchForms?.toJSON();
+    return forms as List<Form>;
   }
 }

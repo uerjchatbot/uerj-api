@@ -16,8 +16,3 @@ export type Create = Pick<
 export type QuestionWithNodes = Question & { childrens: Question[] };
 
 export type Update = Partial<Pick<Question, "id" | "title" | "question">>;
-
-export interface Params {
-  chatbot_id: number;
-  id: string;
-}

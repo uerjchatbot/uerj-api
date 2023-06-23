@@ -1,8 +1,8 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import { Update } from "App/Dtos/Comunication";
 import { Params } from "App/Dtos/Query";
-import { Update } from "App/Dtos/Question";
-import { UpdateFactory } from "App/Factories/question/update";
-import { UpdateValidator } from "App/Validators/question/update";
+import { UpdateFactory } from "App/Factories/comunications/update";
+import { UpdateValidator } from "App/Validators/comunications/update";
 
 export async function update({
   request,
@@ -15,12 +15,12 @@ export async function update({
 
     const updateUseCase = UpdateFactory();
 
-    const question = await updateUseCase.execute({
+    const comunication = await updateUseCase.execute({
       id,
       ...update,
     });
 
-    return response.ok(question);
+    return response.ok(comunication);
   } catch (error) {
     if (error instanceof Error) {
       return response.badRequest({ message: error.message });

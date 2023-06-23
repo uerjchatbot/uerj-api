@@ -1,10 +1,17 @@
 import Hash from "@ioc:Adonis/Core/Hash";
+import { List } from "App/Dtos/List";
 import { Query } from "App/Dtos/Query";
-import { List, Signup, User } from "App/Dtos/User";
+import { Signup, User } from "App/Dtos/User";
 import { randomUUID } from "crypto";
 import { UserRepository } from "../user-repository";
 
 export class MemoryUserRepository implements UserRepository {
+  update: (data: unknown) => Promise<User>;
+  delete: (id: string) => Promise<void>;
+  findMany: <Key extends keyof User>(
+    key: Key,
+    value: Exclude<User[Key], null>
+  ) => Promise<User[]>;
   public items: User[] = [];
 
   public async create(data: Signup): Promise<User> {
@@ -29,7 +36,7 @@ export class MemoryUserRepository implements UserRepository {
     return this.items.find((item) => item[key] === value) ?? null;
   }
 
-  public async list(query: Query): Promise<List> {
+  public async list(query: Query): Promise<List<User>> {
     return {
       meta: {
         current_page: Number(query.page),

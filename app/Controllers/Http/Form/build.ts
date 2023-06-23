@@ -15,6 +15,9 @@ export async function build({
 
     return response.ok(form);
   } catch (error) {
+    if (error instanceof Error) {
+      return response.badRequest({ message: error.message });
+    }
     console.log(error);
     return response.conflict(error);
   }

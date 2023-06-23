@@ -1,8 +1,8 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { Send } from "App/Dtos/Form";
 import { Params } from "App/Dtos/Query";
-import { SendFactory } from "App/Factories/forms/send";
-import { SendValidator } from "App/Validators/forms/send";
+import { SendFactory } from "App/Factories/comunications/send";
+import { SendValidator } from "App/Validators/comunications/send";
 
 export async function send({
   request,

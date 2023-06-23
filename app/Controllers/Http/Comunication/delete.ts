@@ -1,6 +1,6 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import { Params } from "App/Dtos/Query";
-import { DeleteFactory } from "App/Factories/forms/delete";
+import { DeleteFactory } from "App/Factories/comunications/delete";
 
 export async function remove({
   request,

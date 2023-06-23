@@ -1,7 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import { Create } from "App/Dtos/Form";
-import { CreateFactory } from "App/Factories/forms/create";
-import { CreateValidator } from "App/Validators/forms/create";
+import { Create } from "App/Dtos/Comunication";
+import { CreateFactory } from "App/Factories/comunications/create";
+import { CreateValidator } from "App/Validators/comunications/create";
 
 export async function create({
   request,
@@ -12,9 +12,9 @@ export async function create({
 
     const createUseCase = CreateFactory();
 
-    const form = await createUseCase.execute(create);
+    const comunication = await createUseCase.execute(create);
 
-    return response.ok(form);
+    return response.ok(comunication);
   } catch (error) {
     if (error instanceof Error) {
       return response.badRequest({ message: error.message });

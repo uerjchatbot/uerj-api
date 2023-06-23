@@ -1,4 +1,5 @@
-import { Params, QuestionWithNodes } from "App/Dtos/Question";
+import { Params } from "App/Dtos/Query";
+import { QuestionWithNodes } from "App/Dtos/Question";
 import { QuestionRepository } from "App/Repositories/question-repository";
 import { convertWhatsappTextToHtml } from "App/Utils/formatter";
 

@@ -1,5 +1,5 @@
 import { SendBody } from "App/Dtos/Comunication";
-import { FormRepository } from "App/Repositories/form-repository";
+import { ComunicationRepository } from "App/Repositories/comunication-repository";
 import { getTemplateFormData } from "App/Utils/get-template-form-data";
 import { sendEmailToAcceptEmailForm } from "App/Utils/send-email";
 
@@ -9,12 +9,15 @@ const Degree = {
 };
 
 export class SendUseCase {
-  constructor(private formRepository: FormRepository) {}
+  constructor(private comunicationRepository: ComunicationRepository) {}
 
   async execute(data: SendBody): Promise<void> {
-    const form = await this.formRepository.findBy("id", data.id);
+    const comunication = await this.comunicationRepository.findBy(
+      "id",
+      data.id
+    );
 
-    if (!form) throw new Error("Form not found");
+    if (!comunication) throw new Error("Comunication not found");
 
     const extracts = (await getTemplateFormData()).filter(
       (item) => item.accept_email && item.degree.includes(Degree[data.degree])
@@ -24,6 +27,6 @@ export class SendUseCase {
       throw new Error("Form Template not found");
     }
 
-    await sendEmailToAcceptEmailForm(extracts, form);
+    await sendEmailToAcceptEmailForm(extracts, comunication);
   }
 }

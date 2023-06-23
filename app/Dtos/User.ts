@@ -1,5 +1,4 @@
 import { Base } from "./Base";
-import { Meta } from "./Meta";
 
 export interface User extends Base {
   name: string;
@@ -11,11 +10,4 @@ export type Signup = Pick<User, "name" | "email" | "password">;
 
 export type Signin = Pick<User, "email" | "password">;
 
-export type ValidateToken = {
-  access_token: string;
-};
-
-export type List = {
-  meta: Meta;
-  data: User[];
-};
+export type Update = Pick<User, "name" | "email" | "id">;

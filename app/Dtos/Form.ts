@@ -1,5 +1,4 @@
 import { Base } from "./Base";
-import { Meta } from "./Meta";
 
 export interface Form extends Base {
   title: string;
@@ -14,20 +13,10 @@ export type Send = {
   degree: "master" | "doctor";
 };
 
-export interface Params {
-  question_id: number;
-  id: string;
-}
-
 export interface SendBody {
   id: string;
   degree: "master" | "doctor";
 }
-
-export type List = {
-  meta: Meta;
-  data: Form[];
-};
 
 export interface FormQuestionOption {
   value: string;

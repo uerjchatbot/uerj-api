@@ -21,6 +21,7 @@
 import Route from "@ioc:Adonis/Core/Route";
 
 import "./auth";
+import "./comunication";
 import "./form";
 import "./question";
 import "./user";

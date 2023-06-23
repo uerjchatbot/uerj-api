@@ -1,19 +1,19 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import { Params } from "App/Dtos/Query";
-import { DeleteFactory } from "App/Factories/forms/delete";
+import { Query } from "App/Dtos/Query";
+import { ListFactory } from "App/Factories/comunications/list";
 
-export async function remove({
+export async function list({
   request,
   response,
 }: HttpContextContract): Promise<void> {
   try {
-    const { id }: Partial<Params> = request.params();
+    const query: Query = request.qs();
 
-    const deleteUseCase = DeleteFactory();
+    const listUseCase = ListFactory();
 
-    await deleteUseCase.execute(String(id));
+    const paginate = await listUseCase.execute(query);
 
-    return response.ok({ message: "deleted" });
+    return response.ok(paginate);
   } catch (error) {
     if (error instanceof Error) {
       return response.badRequest({ message: error.message });
