@@ -3,15 +3,16 @@ version: "3.9"
 services:
   db:
     container_name: "${APP_NAME}-db"
-    image: postgres
-    volumes:
-      - storage_db:/var/lib/postgres/data
-    ports:
-      - 5432:5432
+    image: postgres:alpine
+    restart: always
     environment:
       POSTGRES_USER: ${PG_USER}
       POSTGRES_PASSWORD: ${PG_PASSWORD}
       POSTGRES_DB: ${PG_DB_NAME}
+    volumes:
+      - storage_db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
 
 volumes:
   storage_db:
