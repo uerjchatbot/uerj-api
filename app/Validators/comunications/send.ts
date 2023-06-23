@@ -5,7 +5,7 @@ export class SendValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
-    degree: schema.enum(["master", "doctor"] as const),
+    degree: schema.enum(["master", "doctor", "union"] as const),
   });
 
   public messages: CustomMessages = {};

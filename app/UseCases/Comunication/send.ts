@@ -1,4 +1,4 @@
-import { SendBody } from "App/Dtos/Comunication";
+import { Degree } from "App/Dtos/Degree";
 import { ComunicationRepository } from "App/Repositories/comunication-repository";
 import { getTemplateFormData } from "App/Utils/get-template-form-data";
 import { sendEmailToAcceptEmailForm } from "App/Utils/send-email";
@@ -11,16 +11,19 @@ const Degree = {
 export class SendUseCase {
   constructor(private comunicationRepository: ComunicationRepository) {}
 
-  async execute(data: SendBody): Promise<void> {
+  async execute(data: Degree): Promise<void> {
     const comunication = await this.comunicationRepository.findBy(
       "id",
-      data.id
+      String(data.id)
     );
 
     if (!comunication) throw new Error("Comunication not found");
 
-    const extracts = (await getTemplateFormData()).filter(
-      (item) => item.accept_email && item.degree.includes(Degree[data.degree])
+    const extracts = (await getTemplateFormData()).filter((item) =>
+      item.accept_email && data.degree === "union"
+        ? item.degree.includes(Degree["master"]) ||
+          item.degree.includes(Degree["doctor"])
+        : item.degree.includes(Degree[data.degree])
     );
 
     if (extracts.length === 0) {

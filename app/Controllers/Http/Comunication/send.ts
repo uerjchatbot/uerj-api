@@ -1,5 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
-import { Send } from "App/Dtos/Form";
+import { Degree } from "App/Dtos/Degree";
 import { Params } from "App/Dtos/Query";
 import { SendFactory } from "App/Factories/comunications/send";
 import { SendValidator } from "App/Validators/comunications/send";
@@ -11,7 +11,7 @@ export async function send({
   try {
     const { id }: Partial<Params> = request.params();
 
-    const send: Send = await request.validate(SendValidator);
+    const send: Degree = await request.validate(SendValidator);
 
     const sendUseCase = SendFactory();
 

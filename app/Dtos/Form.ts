@@ -9,15 +9,6 @@ export interface Form extends Base {
 export type Create = Omit<Form, "id" | "created_at" | "updated_at">;
 export type Update = Partial<Omit<Form, "created_at" | "updated_at">>;
 
-export type Send = {
-  degree: "master" | "doctor";
-};
-
-export interface SendBody {
-  id: string;
-  degree: "master" | "doctor";
-}
-
 export interface FormQuestionOption {
   value: string;
 }
