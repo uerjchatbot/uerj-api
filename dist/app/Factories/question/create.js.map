@@ -1,1 +1,0 @@
-{"version":3,"file":"create.js","sourceRoot":"","sources":["../../../../app/Factories/question/create.ts"],"names":[],"mappings":";;;AAAA,0GAAqF;AACrF,+EAA6D;AAE7D,SAAgB,aAAa;IAC3B,MAAM,cAAc,GAAG,IAAI,6CAAuB,EAAE,CAAC;IACrD,MAAM,OAAO,GAAG,IAAI,sBAAa,CAAC,cAAc,CAAC,CAAC;IAElD,OAAO,OAAO,CAAC;AACjB,CAAC;AALD,sCAKC"}
