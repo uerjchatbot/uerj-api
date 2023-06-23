@@ -1,1 +1,0 @@
-{"version":3,"file":"delete.js","sourceRoot":"","sources":["../../../../app/Factories/comunications/delete.ts"],"names":[],"mappings":";;;AAAA,kHAA6F;AAC7F,mFAAiE;AAEjE,SAAgB,aAAa;IAC3B,MAAM,sBAAsB,GAAG,IAAI,qDAA2B,EAAE,CAAC;IACjE,MAAM,OAAO,GAAG,IAAI,sBAAa,CAAC,sBAAsB,CAAC,CAAC;IAE1D,OAAO,OAAO,CAAC;AACjB,CAAC;AALD,sCAKC"}
